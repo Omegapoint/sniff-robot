@@ -45,25 +45,13 @@ class Sniff:
 
 def main():
     robot = Sniff()
-    state = 'l'
 
     try:
         while True:
+            line_on_left = robot.left_line_sensor.is_over_line()
+            line_on_right = robot.right_line_sensor.is_over_line()
 
-            left = robot.left_line_sensor.is_over_line()
-            right = robot.right_line_sensor.is_over_line()
-
-            if left:
-                state = 'l'
-            elif right:
-                state = 'r'
-
-            if left or right:
-                robot.forward()
-            elif state == 'l':
-                robot.turn_left()
-            else:
-                robot.turn_right()
+            # Add logic here to make the robot follow the white line
 
     except KeyboardInterrupt:
         robot.stop()
